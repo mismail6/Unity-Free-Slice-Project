@@ -8,6 +8,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
     [SerializeField] private Transform objectGrabPointTransform;
+    Collider temp;
 
     private ObjectGrabbable objectGrabbable;
 
@@ -27,10 +28,14 @@ public class PlayerPickUpDrop : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                     {
+                        temp = objectGrabbable.gameObject.GetComponent<Collider>();
+                        temp.enabled = false;
                         objectGrabbable.Grab(objectGrabPointTransform);
                     }
                 }
             } else {
+                temp.enabled = true;
+                temp = null;
                 objectGrabbable.Drop();
                 objectGrabbable = null;
             }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MyKatana
+  - Sliceable
   layers:
   - Default
   - TransparentFX
