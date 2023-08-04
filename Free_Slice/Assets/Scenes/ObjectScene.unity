@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1322055175328285469, guid: 0a94bd08074ccfd4e938cda201930e63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.05
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 1322055175328285469, guid: 0a94bd08074ccfd4e938cda201930e63, type: 3}
       propertyPath: m_LocalPosition.y
@@ -504,7 +504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1322055175328285469, guid: 0a94bd08074ccfd4e938cda201930e63, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.02
+      value: 33.5
       objectReference: {fileID: 0}
     - target: {fileID: 1322055175328285469, guid: 0a94bd08074ccfd4e938cda201930e63, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752b80bf2c392ad4782225cf1806b530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseS: 220
+  mouseS: 100
   playerBody: {fileID: 2027417491}
 --- !u!1001 &1284941402
 PrefabInstance:
@@ -6547,8 +6547,8 @@ GameObject:
   - component: {fileID: 2027417491}
   - component: {fileID: 2027417490}
   - component: {fileID: 2027417493}
-  - component: {fileID: 2027417494}
   - component: {fileID: 2027417495}
+  - component: {fileID: 2027417496}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -6617,7 +6617,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 631
   objectGrabPointTransform: {fileID: 1526480005}
---- !u!114 &2027417494
+--- !u!33 &2027417495
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027417489}
+  m_Mesh: {fileID: 0}
+--- !u!114 &2027417496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6631,21 +6639,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2027417490}
   speed: 12
-  gravity: -25
+  gravity: -9.81
   jumpHeight: 3
   groundCheck: {fileID: 1664416086}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 512
---- !u!33 &2027417495
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027417489}
-  m_Mesh: {fileID: 0}
+    m_Bits: 0
 --- !u!1001 &2044523303
 PrefabInstance:
   m_ObjectHideFlags: 0
