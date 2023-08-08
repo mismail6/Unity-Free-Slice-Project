@@ -89,6 +89,7 @@ namespace Assets.Scripts
             meshCollider.convex = true;
 
             var rb = gameObject.AddComponent<Rigidbody>();
+            gameObject.AddComponent<ObjectGrabbable>();
             rb.useGravity = useGravity;
 
         }

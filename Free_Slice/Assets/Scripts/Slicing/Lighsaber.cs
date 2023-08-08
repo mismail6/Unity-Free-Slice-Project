@@ -8,8 +8,8 @@ public class Lighsaber : MonoBehaviour
     //The number of vertices to create per frame
     private const int NUM_VERTICES = 12;
     Collider swordCollider;
+    private GameObject Sword;
     private GameObject Sword1;
-    private GameObject Sword2;
 
     [SerializeField]
     [Tooltip("The blade object")]
@@ -54,9 +54,10 @@ public class Lighsaber : MonoBehaviour
     {
         //Init mesh and triangles
 
-        Sword1 = gameObject;
-        Sword2 = GameObject.FindWithTag("MyKatana");
-        swordCollider = Sword2.GetComponent<Collider>();
+        Sword = gameObject;
+        Sword1 = GameObject.FindWithTag("MyKatana");
+        //Sword1 = GameObject.Find("Player/Main Camera/Player_Sword2/Sword");
+        swordCollider = Sword1.GetComponent<Collider>();
 
         swordCollider.isTrigger = false;
         swordCollider.enabled = false;
@@ -94,9 +95,10 @@ public class Lighsaber : MonoBehaviour
 
     IEnumerator SwordSwing()
     {
-        Sword1.GetComponent<Animator>().Play("Sword_Animation");
+        Sword.GetComponent<Animator>().Play("Sword_Animation");
+        Sword.GetComponent<Animator>().Play("Sword_Animation2");
         yield return new WaitForSeconds(0.8f);
-        Sword1.GetComponent<Animator>().Play("New State");
+        Sword.GetComponent<Animator>().Play("New State");
 
         swordCollider.isTrigger = false;
         swordCollider.enabled = false;

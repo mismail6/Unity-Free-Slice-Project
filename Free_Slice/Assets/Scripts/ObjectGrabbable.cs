@@ -13,6 +13,7 @@ public class ObjectGrabbable : MonoBehaviour
     }
     public void Grab(Transform objectGrabPointTransform)
     {
+        Debug.Log("GRABBED");
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidbody.useGravity = false;
         objectRigidbody.isKinematic = true;
@@ -26,6 +27,7 @@ public class ObjectGrabbable : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if(objectGrabPointTransform != null)
         {
             float lerpSpeed = 10f;
