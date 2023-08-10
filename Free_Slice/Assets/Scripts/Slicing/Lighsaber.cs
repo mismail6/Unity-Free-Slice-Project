@@ -10,6 +10,7 @@ public class Lighsaber : MonoBehaviour
     Collider swordCollider;
     private GameObject Sword;
     private GameObject Sword1;
+    private bool isDemonic;
 
     [SerializeField]
     [Tooltip("The blade object")]
@@ -53,11 +54,18 @@ public class Lighsaber : MonoBehaviour
     void Start()
     {
         //Init mesh and triangles
-
+        isDemonic = false;
         Sword = gameObject;
+        if (string.Equals(Sword.name, "Player_Sword2"))
+        {
+            isDemonic = true;
+        }
+        
         Sword1 = GameObject.FindWithTag("MyKatana");
         //Sword1 = GameObject.Find("Player/Main Camera/Player_Sword2/Sword");
         swordCollider = Sword1.GetComponent<Collider>();
+
+
 
         swordCollider.isTrigger = false;
         swordCollider.enabled = false;
@@ -196,7 +204,7 @@ public class Lighsaber : MonoBehaviour
                 plane = plane.flipped;
             }
 
-            GameObject[] slices = Slicer.Slice(plane, other.gameObject);
+            GameObject[] slices = Slicer.Slice(plane, other.gameObject, Sword1, isDemonic);
             Destroy(other.gameObject);
 
             Rigidbody rigidbody = slices[1].GetComponent<Rigidbody>();

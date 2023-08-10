@@ -21,44 +21,35 @@ public class PlayerPickUpDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject sword;
+        GameObject sword1;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            float pickUpDistance = 4f;
-            //if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
-            //{
-                //Debug.Log("BLACK SWORD");
+           
 
-                //GameObject object1 = objectGrabbable.gameObject;
-                //if (object1.name == "DemonicSword")
-                //{
-                //    Debug.Log("FOUND BLACK SWORD");
-                //}
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            sword = GameObject.Find("Player/Main Camera/Player_Sword2");
+            sword1 = GameObject.Find("Player/Main Camera/Player_Sword");
+            sword.SetActive(true);
+            sword1.SetActive(false);
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider != null)
-                {
-                    GameObject sword;
-                    GameObject object1 = hit.collider.gameObject;
-                    if (object1.name == "DemonicSword")
-                    {
-                        sword = GameObject.Find("Player/Main Camera/Player_Sword2");
-                        GameObject sword1 = GameObject.Find("Player/Main Camera/Player_Sword");
-                        sword.SetActive(true);
-                        sword1.SetActive(false); 
-                        Debug.Log("FOUND BLACK SWORD");
-                    }
-                }
-            }
 
             //}
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
 
+
+            sword = GameObject.Find("Player/Main Camera/Player_Sword2");
+            sword1 = GameObject.Find("Player/Main Camera/Player_Sword");
+            sword.SetActive(false);
+            sword1.SetActive(true);
+
+
+            //}
+        }
         if (Input.GetKeyDown(KeyCode.E)) {
           if (objectGrabbable == null) {
-             float pickUpDistance = 4f;
+             float pickUpDistance = 32f;
              if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
              {
                 if (raycastHit.transform.TryGetComponent(out objectGrabbable))

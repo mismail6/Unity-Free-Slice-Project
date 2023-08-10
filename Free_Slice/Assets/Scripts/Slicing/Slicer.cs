@@ -13,7 +13,7 @@ namespace Assets.Scripts
         /// <param name="plane"></param>
         /// <param name="objectToCut"></param>
         /// <returns></returns>
-        public static GameObject[] Slice(Plane plane, GameObject objectToCut)
+        public static GameObject[] Slice(Plane plane, GameObject objectToCut, GameObject sword, bool isDemonic)
         {            
             //Get the current mesh and its verts and tris
             Mesh mesh = objectToCut.GetComponent<MeshFilter>().mesh;
@@ -28,10 +28,10 @@ namespace Assets.Scripts
             //Create left and right slice of hollow object
             SlicesMetadata slicesMeta = new SlicesMetadata(plane, mesh, sliceable.IsSolid, sliceable.ReverseWireTriangles, sliceable.ShareVertices, sliceable.SmoothVertices);            
 
-            GameObject positiveObject = CreateMeshGameObject(objectToCut);
+            GameObject positiveObject = CreateMeshGameObject(objectToCut, isDemonic, sword);
             positiveObject.name = string.Format("{0}_positive", objectToCut.name);
 
-            GameObject negativeObject = CreateMeshGameObject(objectToCut);
+            GameObject negativeObject = CreateMeshGameObject(objectToCut, isDemonic, sword);
             negativeObject.name = string.Format("{0}_negative", objectToCut.name);
 
             var positiveSideMeshData = slicesMeta.PositiveSideMesh;
@@ -51,9 +51,10 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="originalObject">The original object.</param>
         /// <returns></returns>
-        private static GameObject CreateMeshGameObject(GameObject originalObject)
+        private static GameObject CreateMeshGameObject(GameObject originalObject, bool isDemonic, GameObject sword)
         {
             var originalMaterial = originalObject.GetComponent<MeshRenderer>().materials;
+            var demonicMaterial = sword.GetComponent<MeshRenderer>().materials;
 
             GameObject meshGameObject = new GameObject();
             Sliceable originalSliceable = originalObject.GetComponent<Sliceable>();
@@ -66,7 +67,16 @@ namespace Assets.Scripts
             sliceable.ReverseWireTriangles = originalSliceable.ReverseWireTriangles;
             sliceable.UseGravity = originalSliceable.UseGravity;
 
-            meshGameObject.GetComponent<MeshRenderer>().materials = originalMaterial;
+            // INSERT IF HERE
+            if (isDemonic)
+            {
+                meshGameObject.GetComponent<MeshRenderer>().materials = demonicMaterial;
+            }
+            else
+            {
+                meshGameObject.GetComponent<MeshRenderer>().materials = originalMaterial;
+            }
+            
 
             meshGameObject.transform.localScale = originalObject.transform.localScale;
             meshGameObject.transform.rotation = originalObject.transform.rotation;
